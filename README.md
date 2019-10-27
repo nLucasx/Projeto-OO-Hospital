@@ -16,7 +16,7 @@ O dono da clínica poderá automaticamente pagar seus funcionários de acordo co
 7 - Registrar materiais comprados.</br>
 O dono da clínica poderá registrar novos materiais  necessários no uso diário que serão comprados.</br>
 8 - Registrar uso de algum material</br>
-Qualquer funcionário da clínica poderá utilizar os materiais diariamente em seu trabalho, porém deverá registrar o uso dos mesmos.
+Qualquer funcionário da clínica poderá utilizar os materiais diariamente em seu trabalho, porém deverá registrar o uso dos mesmos.</br>
 9 - Demitir funcionários</br>
 O dono da clínica poderá demitir funcionários.</br>
 10 - Login</br>
