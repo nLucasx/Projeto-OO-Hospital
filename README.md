@@ -6,7 +6,7 @@
    O sistema será dividido em camadas. Desde o administrador da clínica até os funcionários poderão utilizar o sistema, porém cada um irá acessar sua respectiva camada referente à sua área de trabalho. Cada camada terá sua forma de Login no sistema, os médicos irão acessá-lo utilizando o seu CPF e CRM e os demais terão um usuário e senha padronizados. O Login será uma funcionalidade geral do sistema.
 
 # Administrador
-   Esta camada será a que o dono da clínica irá se conectar. Seguem as funcionalidades disponíveis ao administrador:
+   Esta camada será a que o gerente da clínica irá se conectar. Seguem as funcionalidades disponíveis ao administrador:
    * Cadastro de funcionários </br>
    Quando o gerente da clínica contratar um funcionário, ele poderá registrá-lo em um banco de dados que armazena os funcionários que trabalham na clínica com todas as suas informações. O sistema dará a opção de registrar médicos, enfermeiros, recepcionistas e auxiliares de serviços gerais. De acordo com a área de atuação do funcionário, serão pedidos diferentes tipos de dados sobre ele, como o CRM do médico, por exemplo. </br> </br>
    * Pagamento de funcionários </br>
