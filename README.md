@@ -1,9 +1,9 @@
 # Projeto de Software
 ## Aluno: Lucas Buarque de Araujo Barros
 
-#### >Sistema de Gerenciamento de Clínica
-    O objetivo do projeto é criar um sistema para gerenciar uma clínica. O dono de uma clínica solicitou um sistema que o auxiliasse na organização da mesma da seguinte maneira: </br>
-    O sistema será dividido em camadas. Desde o administrador da clínica até os funcionários poderão utilizar o sistema, porém cada um irá acessar sua respectiva camada referente à sua área de trabalho. Cada camada terá sua forma de Login no sistema, os médicos irão acessar o sistema utilizando o seu cpf e CRM e os demais terão um usuário e senha padronizados.
+#### Sistema de Gerenciamento de Clínica
+   O objetivo do projeto é criar um sistema para gerenciar uma clínica. O dono de uma clínica solicitou um sistema que o auxiliasse na organização da mesma da seguinte maneira: </br>
+   O sistema será dividido em camadas. Desde o administrador da clínica até os funcionários poderão utilizar o sistema, porém cada um irá acessar sua respectiva camada referente à sua área de trabalho. Cada camada terá sua forma de Login no sistema, os médicos irão acessar o sistema utilizando o seu cpf e CRM e os demais terão um usuário e senha padronizados.
 
 # Administrador
     Esta camada será a que o dono da clínica irá se conectar. 
