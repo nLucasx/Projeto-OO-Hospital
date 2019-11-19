@@ -1,5 +1,7 @@
-# Projeto-OO-Hospital
+# Projeto de Software
+# Aluno: Lucas Buarque de Araujo Barros
 
+<h1> Sistema de Gerenciamento de Clínica</h1>
 Funcionalidades:</br>
 1 - Cadastrar funcionários </br>
 Médicos, enfermeiros, recepcionistas e serviço geral.</br>
