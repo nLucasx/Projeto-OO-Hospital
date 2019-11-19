@@ -23,6 +23,7 @@
    Esta opção será para a verificação de unidades disponíveis de materiais na clínica. Caso algum material esteja em falta, será mostrado "Em falta!" ao lado do mesmo. Essa funcionalidade é bastante importante na gestão da clínica. </br></br>
 
 # Médico
+   Esta camada será a que os médicos irão se conectar. Seguem as funcionalidades disponíveis aos médicos: 
    * Login específico </br>
    Diferentemente das outras camadas do sistema que serão acessadas apenas com um usuário e senha, cada médico poderá acessar uma conta privada na qual estarão as informações sobre os pacientes atendidos e cada relatório médico referente aos mesmos. </br></br>
    
@@ -38,6 +39,7 @@
    Esta funcionalidade será utilizada para a leitura de um relatório médico existente no sistema. Para buscar um relatório específico, basta informar o CPF do paciente que poderá ser consultado utilizando a funcionalidade "Listagem de pacientes".</br></br>
 
 # Recepção
+   Esta camada será a que a recepção irá se conectar. Seguem as funcionalidades disponíveis à recepção:
    * Agendamento de consulta</br>
    Nesta funcionalidade, a pessoa informará seus dados à recepção e se quer ser atendida pela emergência ou por um médico específico disponível. Caso a pessoa escolha a emergência, a recepção irá encaminhá-la para o processo de triagem que será feito pela enfermaria. </br></br>
    * Verificar listas de espera </br>
@@ -45,6 +47,7 @@
    * Chamar um paciente para ser atendido</br> 
    Nesta funcionalidade, a recepção irá retirar o paciente da fila de espera e o chamará através de um alerta emitido pelo sistema. A recepção só poderá chamar o paciente para ser atendido quando o médico estiver sem nenhuma consulta em andamento. </br></br>
 # Enfermaria
+   Esta camada será a que a enfermaria irá se conectar. Segue a funcionalidade disponível à enfermaria:
    * Triagem </br>
    Um paciente poderá escolher ser atendido pela emergência. Ele precisará fazer a triagem para ser verificada a prioridade de atendimento. Esta funcionalidade organizará a lista de espera da emergência. Caso existam prioridades iguais na lista de espera, o critério de desempate será a idade (quanto maior a idade, maior prioridade). Se existirem prioridades iguais e idades iguais, permanece na frente quem chegou primeiro na lista. </br></br>
   
