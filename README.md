@@ -10,18 +10,18 @@
    * Cadastro de funcionários </br>
    Quando o gerente da clínica contratar um funcionário, ele poderá registrá-lo em um banco de dados que armazena os funcionários que trabalham na clínica com todas as suas informações. O sistema dará a opção de registrar médicos, enfermeiros, recepcionistas e auxiliares de serviços gerais. De acordo com a área de atuação do funcionário, serão pedidos diferentes tipos de dados sobre ele, como o CRM do médico, por exemplo. </br> </br>
    * Pagamento de funcionários </br>
-   Esta funcionalidade será usada para a gestão financeira da clínica. Quando o gerente utilizar esta funcionalidade, ele terá acesso ao saldo da clínica e poderá efetuar os devidos pagamentos aos funcionários da clínica. O saldo será atualizado automaticamente logo após o pagamento ter sido efetuado. Caso não haja saldo disponível, o gerente deverá registrar mais saldo disponível. </br>
+   Esta funcionalidade será usada para a gestão financeira da clínica. Quando o gerente utilizar esta funcionalidade, ele terá acesso ao saldo da clínica e poderá efetuar os devidos pagamentos aos funcionários da clínica. O saldo será atualizado automaticamente logo após o pagamento ter sido efetuado. Caso não haja saldo disponível, o gerente deverá registrar mais saldo disponível. </br></br>
    * Exclusão de um funcionário do banco de dados </br>
-   Esta funcionalidade será usada quando ocorrer a demissão de um funcionário da clinica. O gerente precisará excluir aquele funcionário do banco de dados para saber que ele não trabalha mais em sua clínica. </br>
+   Esta funcionalidade será usada quando ocorrer a demissão de um funcionário da clinica. O gerente precisará excluir aquele funcionário do banco de dados para saber que ele não trabalha mais em sua clínica. </br></br>
    * Busca de funcionário no banco de dados da clínica </br>
-   Através do CPF, o gerente poderá verificar todas as informações disponíveis sobre um funcionário. Caso o CPF não estiver cadastrado, o sistema irá informá-lo. </br> 
+   Através do CPF, o gerente poderá verificar todas as informações disponíveis sobre um funcionário. Caso o CPF não estiver cadastrado, o sistema irá informá-lo. </br></br>
    * Registro de compra de materiais </br>
-   Esta funcionalidade tem o objetivo de gerenciar a quantidade de materiais disponíveis na clínica, sejam eles materiais hospitalares, limpeza e etc. Os materiais serão listados em categorias de uso e em ordem decrescente de unidades. O sistema já disponibilizará uma lista padrão de materiais necessários na clínica. O administrador poderá adicionar um novo material específico na lista </br>
+   Esta funcionalidade tem o objetivo de gerenciar a quantidade de materiais disponíveis na clínica, sejam eles materiais hospitalares, limpeza e etc. Os materiais serão listados em categorias de uso e em ordem decrescente de unidades. O sistema já disponibilizará uma lista padrão de materiais necessários na clínica. O administrador poderá adicionar um novo material específico na lista </br></br>
    * Registro de uso de materiais </br>
    Em contrapartida, esta funcionalidade terá o objetivo registrar o uso de unidades disponíveis de materiais. Quando o número de unidades de um certo material chegar a zero, o gerente já saberá da necessidade de comprar mais unidades daquele material.
-Funcionalidades:</br>
+Funcionalidades:</br></br>
    * Listagem de materiais disponíveis </br>
-   Esta opção será para a verificação de unidades disponíveis de materiais na clínica. Caso algum material esteja em falta, será mostrado "Em falta!" ao lado do mesmo. Essa funcionalidade é bastante importante na gestão da clínica. </br>
+   Esta opção será para a verificação de unidades disponíveis de materiais na clínica. Caso algum material esteja em falta, será mostrado "Em falta!" ao lado do mesmo. Essa funcionalidade é bastante importante na gestão da clínica. </br></br>
 
 1 - Cadastrar funcionários </br>
 Médicos, enfermeiros, recepcionistas e serviço geral.</br>
