@@ -1,7 +1,7 @@
 # Projeto de Software
-# Aluno: Lucas Buarque de Araujo Barros
+<h2> Aluno: Lucas Buarque de Araujo Barros </h2>
 
-<h1> Sistema de Gerenciamento de Clínica</h1>
+<h4> Sistema de Gerenciamento de Clínica</h4>
 Funcionalidades:</br>
 1 - Cadastrar funcionários </br>
 Médicos, enfermeiros, recepcionistas e serviço geral.</br>
