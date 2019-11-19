@@ -8,7 +8,7 @@
 # Administrador
    Esta camada será a que o dono da clínica irá se conectar. Seguem as funcionalidades disponíveis ao administrador:
    * Cadastro de funcionários </br>
-   Quando o gerente da clínica contratar um funcionário, ele poderá registrá-lo em um banco de dados que armazena os funcionários que trabalham na clínica com todas as suas informações. O sistema dará a opção de registrar médicos, enfermeiros, recepcionistas e auxiliares de serviços gerais. De acordo com a área de atuação do funcionário, serão pedidos diferentes tipos de dados sobre ele, como o CRM do médico, por exemplo. </br>
+   Quando o gerente da clínica contratar um funcionário, ele poderá registrá-lo em um banco de dados que armazena os funcionários que trabalham na clínica com todas as suas informações. O sistema dará a opção de registrar médicos, enfermeiros, recepcionistas e auxiliares de serviços gerais. De acordo com a área de atuação do funcionário, serão pedidos diferentes tipos de dados sobre ele, como o CRM do médico, por exemplo. </br> </br>
    * Pagamento de funcionários </br>
    Esta funcionalidade será usada para a gestão financeira da clínica. Quando o gerente utilizar esta funcionalidade, ele terá acesso ao saldo da clínica e poderá efetuar os devidos pagamentos aos funcionários da clínica. O saldo será atualizado automaticamente logo após o pagamento ter sido efetuado. Caso não haja saldo disponível, o gerente deverá registrar mais saldo disponível. </br>
    * Exclusão de um funcionário do banco de dados </br>
