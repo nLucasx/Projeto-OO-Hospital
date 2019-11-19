@@ -7,7 +7,8 @@
 
 # Administrador
    Esta camada será a que o dono da clínica irá se conectar. Seguem as funcionalidades disponíveis ao administrador:
-   * O administrador
+   * Cadastro de funcionários
+   Quando o gerente da clínica contratar um funcionário, ele poderá registrá-lo em uma lista de funcionários que trabalham na clínica com todas as suas informações. O sistema dará a opção de registrar médicos, enfermeiros, recepcionistas e auxiliares de serviços gerais.
 Funcionalidades:</br>
 1 - Cadastrar funcionários </br>
 Médicos, enfermeiros, recepcionistas e serviço geral.</br>
