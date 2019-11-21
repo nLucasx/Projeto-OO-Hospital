@@ -30,5 +30,4 @@ public abstract class Person {
         return age;
     }
     
-    public abstract String getOccupation_area();
 }

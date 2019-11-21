@@ -1,6 +1,5 @@
 
 package Control;
-import java.util.ArrayList;
 import java.util.Scanner;
 public class Exceptions {
     public int verify_menu(int range)
@@ -49,6 +48,30 @@ public class Exceptions {
             System.out.println("Você digitou letras!");
             return -1;
         }
+        if (option < 0)
+        {
+        	System.out.println("Opção inválida!");
+    		return -1;
+        }
         return option;
+    }
+    public double verifyDouble()
+    {
+    	double option = -1;
+    	try
+    	{
+    		Scanner input = new Scanner(System.in);
+    		option = Double.parseDouble(input.next());
+    	}
+    	catch(NumberFormatException e)
+    	{
+    		System.out.println("Você digitou letras!");
+    	}
+    	if (option < 0)
+    	{
+    		System.out.println("Opção inválida!");
+    		return -1;
+    	}
+    	return option;
     }
 }
