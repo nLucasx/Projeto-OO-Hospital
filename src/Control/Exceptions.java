@@ -13,9 +13,11 @@ public class Exceptions {
         }
         catch (NumberFormatException e)
         {
-            return -2; // -2 para exception.
+        	System.out.println("Digite apenas números!");
+        	return -2; // -2 para exception.
         }
         if (option >= 0 && option <= range) return option;
+        System.out.println("Opção inválida");
         return -1; // -1 para opção inválida.
     }
     public boolean verify_ssn(String ssn)
@@ -48,7 +50,7 @@ public class Exceptions {
             System.out.println("Você digitou letras!");
             return -1;
         }
-        if (option < 0)
+        if (option <= 0)
         {
         	System.out.println("Opção inválida!");
     		return -1;
@@ -73,5 +75,9 @@ public class Exceptions {
     		return -1;
     	}
     	return option;
+    }
+    public boolean verifyBiggest(int x, int y)
+    {
+    	return x > y;
     }
 }

@@ -39,5 +39,10 @@ public class Screen {
         System.out.println("[4] - Verificar fila de espera");
         System.out.println("[0] - Sair"); 
     }
-    
+    public void drawProductsMenu()
+    {
+    	System.out.println("\n[1] - Materiais hospitalares");
+        System.out.println("[2] - Materiais de limpeza");
+        System.out.println("[0] - Sair");
+    }
 }

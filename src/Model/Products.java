@@ -13,7 +13,16 @@ public class Products implements Comparable <Products>{
 	{
 		return this.amount;
 	}
-	public String getName()
+	public void sumAmount(int number)
+	{
+		this.amount += number;
+	}
+	public void subAmount(int number)
+	{
+		this.amount -= number;
+	}
+	@Override
+	public String toString()
 	{
 		return this.name;
 	}

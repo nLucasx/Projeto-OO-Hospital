@@ -1,6 +1,8 @@
 
 package Control;
 import java.util.*;
+
+import Model.Products;
 import View.Screen;
 
 public class Hospital {
@@ -29,31 +31,20 @@ public class Hospital {
             if (option == -2 || option == -1) screen.draw_main_menu();
             switch (option)
             {
-                case -2:
-                    System.out.println("Digite apenas números!");
+                case 1 :
+                    System.out.println("Opção indisponível");
                     break;
-                case -1:
-                    System.out.println("Opção inválida");
+                case 2 :
+                    receptionMenu();
                     break;
-                default:
+                case 3 :
+                    administratorMenu();
+                    break;
+                case 0 :
+                    System.out.println("Saindo ...");
                     correct_option = true;
                     break;
             }
-        }
-        switch (option)
-        {
-            case 1 :
-                System.out.println("Opção indisponível");
-                break;
-            case 2 :
-                receptionMenu();
-                break;
-            case 3 :
-                administratorMenu();
-                break;
-            case 0 :
-                System.out.println("Saindo ...");
-                break;
         }
     }
     public void administratorMenu()
@@ -85,15 +76,8 @@ public class Hospital {
         {
             screen.draw_admin_menu();
             option = filter.verify_menu(8);
-            if (option == -2 || option == -1) screen.draw_admin_menu();
             switch (option)
             {
-                case -2:
-                    System.out.println("Digite apenas números!");
-                    break;
-                case -1:
-                    System.out.println("Opção inválida");
-                    break;
                 case 1 :
                 	adminManageEmployees(1, admin);
                     break;
@@ -107,12 +91,13 @@ public class Hospital {
                     adminSearchEmployee(admin);
                     break;
                 case 5 :
-                	System.out.println("Opção indisponível");
+                	adminAddProducts(admin);
                     break;
                 case 6:
+                	adminRemoveProducts(admin);
                 	break;
                 case 7:
-                	adminAddProducts(admin);
+                	admin.showProducts();
                 	break;
                 case 8:
                 	adminAddBalance(admin);
@@ -143,18 +128,8 @@ public class Hospital {
                 {
                     option = filter.verify_menu(4);
                     if (option == -2 || option == -1) screen.draw_employee_option();
-                    switch (option)
-                    {
-                        case -2:
-                            System.out.println("Digite apenas números!");
-                            break;
-                        case -1:
-                            System.out.println("Opção inválida");
-                            break;
-                        default:
-                            correct_option = true;
-                            break;
-                    }
+                    else correct_option = true;
+   
                 }
                 correct_option = false;
                 if (option > 0)
@@ -313,8 +288,105 @@ public class Hospital {
     }
     public void adminAddProducts(Admin admin)
     {
-    	admin.showProducts();
+    	Screen screen = new Screen();
+    	Exceptions filter = new Exceptions();
+    	int option = 0, number = 0;
+		boolean correct_option = false, correct_option2 = false;
+    	String name = null;
+    	Scanner input = new Scanner(System.in);
+    	
+    	while (!correct_option)
+    	{
+    		screen.drawProductsMenu();
+    		option = filter.verify_menu(2);
+    		if (option == -2 || option == -1) screen.drawProductsMenu();
+    		else
+    		{
+    			if (option > 0)
+    			{
+    				System.out.print("Digite o nome do produto >> ");
+    				name = input.nextLine();
+    				while(!correct_option2)
+    				{	
+    					System.out.print("Digite a quantidade >> ");
+    					number = filter.verify_integer();
+                    	if (number != -1) correct_option2 = true;
+    				}
+    				admin.addProduct(option, name, number);
+    				System.out.println("\n Produto Registrado com sucesso!");
+    			}
+    			else correct_option = true;
+    		}
+    	}
     }
+    public void adminRemoveProducts(Admin admin)
+    {
+    	boolean correct_option = false, correct_option2 = false, correct_option3 = false;
+    	int option = 0, number = 0, product = 0, amount = 0;
+    	Scanner input = new Scanner(System.in);
+    	Exceptions filter = new Exceptions();
+    	Screen screen = new Screen();
+    	while (!correct_option)
+    	{
+    		screen.drawProductsMenu();
+    		option = filter.verify_menu(2);
+    		if (option > 0)
+    		{
+    			while(!correct_option2)
+    			{
+    				admin.showProducts(option);
+    				if (option == 1) 
+    				{
+    					product = filter.verify_menu(admin.getSizeOfQueueH());
+    					if (product > 0) amount = admin.getHProduct(product-1).getAmount();
+    				}
+   					else if (option == 2) 
+   					{
+   						product = filter.verify_menu(admin.getSizeOfQueueC());
+   						if (product > 0) amount = admin.getCProduct(product-1).getAmount();
+   					}
+   					
+    				if (product > 0 && amount > 0) 
+    				{
+    					while(!correct_option3)
+    					{
+    						System.out.print("Digite a quantidade a ser removida do registro >> ");
+    						number = filter.verify_integer();
+    						if (number > 0)
+    						{
+    							if (option == 1)
+    							{	
+    								if (amount >= number)
+    								{
+    									admin.removeProducts(option, product-1, number);
+    									System.out.println("Materiais removidos com sucesso!");
+    									correct_option3 = true;
+    								}
+    								else System.out.println("Esta quantidade é maior que a registrada!");
+    							}
+    							else
+    							{
+    								if (amount >= number)
+    								{
+    									admin.removeProducts(option, product-1, number);
+    									System.out.println("Materiais removidos com sucesso!");
+    									correct_option3 = true;
+    								}
+    								else System.out.println("Esta quantidade é maior que a registrada!");
+    							}
+    						}
+    					}
+    					correct_option3 = false;
+    				}
+    				else if (product > 0 && amount == 0) System.out.println("Este produto está em falta!");
+    				else correct_option2 = true;
+   				}
+    			correct_option2 = false;
+   			} 
+    		else correct_option = true;
+    	}
+   	}
+    	 
     public void receptionMenu()
     {
         Screen screen = new Screen();
@@ -328,29 +400,26 @@ public class Hospital {
             screen.drawReceptionMenu();
             option = filter.verify_menu(4);
             if (option == -2 || option == -1) screen.drawReceptionMenu();
-            switch (option)
-            {
-                case -2:
-                    System.out.println("Digite apenas números!");
-                    break;
-                case -1:
-                    System.out.println("Opção inválida");
-                    break;
-                case 1 :
-                    //receptionAddPatients(1, reception);
-                    break;
-                case 2 :
-                    //receptionAddPatients(2, reception);
-                    break;
-                case 3 :
-                    System.out.println("Opção indisponível");
-                    break;
-                case 4 :
-                    //reception.showQueue();
-                    break;
-                case 0:
-                    correct_option = true;
-                    break;
+            else
+            {	
+            	switch (option)
+            	{
+                	case 1 :
+                		//receptionAddPatients(1, reception);
+                		break;
+                	case 2 :
+                		//receptionAddPatients(2, reception);
+                		break;
+                	case 3 :
+                		System.out.println("Opção indisponível");
+                    	break;
+                	case 4 :
+                		//reception.showQueue();
+                		break;
+                	case 0:
+                		correct_option = true;
+                		break;
+            	}
             }
         }
     }
