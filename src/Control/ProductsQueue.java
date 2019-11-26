@@ -21,4 +21,10 @@ public class ProductsQueue extends Queue<Products>{
 		}
 	}
 
+	@Override
+	public void showQueue() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

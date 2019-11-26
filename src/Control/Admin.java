@@ -5,20 +5,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.PriorityQueue;
 
-public class Admin {
-    private String user;
-    private String password;
+public class Admin extends Account {
     private ArrayList <Employee> allemployees;
-    private ArrayList <Doctor> doctors;
     private Queue <Products> HproductList;
     private Queue <Products> CproductList;
     private double balance;
     
     public Admin(String user, String password)
     {
-        this.password = password;
-        this.user = user;
-        this.doctors = new ArrayList();
+        super(user, password);
         this.allemployees = new ArrayList();
         this.balance = 120000;
         this.HproductList = new ProductsQueue();
@@ -35,34 +30,28 @@ public class Admin {
         CproductList.enqueue(new Products("Detergente", 50));
         CproductList.enqueue(new Products("Desinfetante", 0));
     }
-    public void AddEmployee(int age, String name, String gender, String ssn, String crm, String specialization)
+    public void AddEmployee(int age, String name, String gender, String ssn, String crm, String specialization, ArrayList<Doctor>accounts)
     {
         Doctor doctor = new Doctor(name, ssn, gender, age, crm, specialization);
-        this.doctors.add(doctor);
-        this.allemployees.add(doctor);
+        accounts.add(doctor);
+        this.allemployees.add(doctor.getDoctor());
     }
     public void AddEmployee(int age, String name, String gender, String ssn, String specialization)
     {
-        Nurse nurse = new Nurse(name, ssn, gender, age, specialization);
+        Employee nurse = new Nurse(name, ssn, gender, age, specialization);
         this.allemployees.add(nurse);
     }
     public void AddEmployee(int age, String name, String gender, String ssn)
     {
-        Recepcionist recepcionist = new Recepcionist(name, ssn, gender, age);
+        Employee recepcionist = new Recepcionist(name, ssn, gender, age);
         this.allemployees.add(recepcionist);
     }
     public void AddEmployee(int age, String name, String gender, String ssn, int teste)
     {
-        GeneralServices gen_service = new GeneralServices(name, ssn, gender, age, teste);
+        Employee gen_service = new GeneralServices(name, ssn, gender, age, teste);
         this.allemployees.add(gen_service);
     }
-    public String getPassword() {
-        return password;
-    }
-
-    public String getUser() {
-        return user;
-    }
+    
     public double getBalance() {
 		return balance;
 	}
@@ -199,8 +188,12 @@ public class Admin {
     }
     public void delete_employee(int i)
     {
-        Employee removed = this.allemployees.remove(i);
-        if (removed.getOccupation_area().equals("Médico")) this.doctors.remove(removed);
+    	this.allemployees.remove(i);
+    }
+    public void delete_employee(int i, ArrayList<Doctor> accounts)
+    {
+    	this.allemployees.remove(i);
+    	//accounts.removeAccount(doctor);
     }
     public boolean isEmpty()
     {

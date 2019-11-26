@@ -2,37 +2,39 @@
 package Control;
 import java.util.*;
 
+import Model.Patient;
 import Model.Products;
-import View.Screen;
+import View.*;
 
 public class Hospital {
-    public String name;
-    public Hospital() 
+	public String name;
+	private Admin admin;
+	private Reception reception;
+	private Nursery nursery;
+	private ArrayList<Doctor> doctors;
+    public Hospital(String name) 
     {
-        this.name = "Mais Saúde";
-    }
-    
-    public static void main(String[] args) 
-    {
-        Hospital hospital = new Hospital();
-        hospital.mainMenu();
+    	this.name = name;
+    	admin = new Admin("admin", "admin");
+    	reception = new Reception("recep", "recep");
+    	nursery = new Nursery("nursery", "nursery");
+    	doctors = new ArrayList<Doctor>();
     }
     public void mainMenu()
     {
         Screen screen = new Screen();
-        screen.draw_main_menu();
         Exceptions filter = new Exceptions();
         
         boolean correct_option = false;
         int option = -1;
         while (!correct_option)
         {
-            option = filter.verify_menu(3);
-            if (option == -2 || option == -1) screen.draw_main_menu();
+        	screen.draw_main_menu();
+        	option = filter.verify_menu(4);
             switch (option)
             {
                 case 1 :
-                    System.out.println("Opção indisponível");
+                    doctorsMenu();
                     break;
                 case 2 :
                     receptionMenu();
@@ -40,6 +42,9 @@ public class Hospital {
                 case 3 :
                     administratorMenu();
                     break;
+                case 4 :
+                	nurseryMenu();
+                	break;
                 case 0 :
                     System.out.println("Saindo ...");
                     correct_option = true;
@@ -47,28 +52,16 @@ public class Hospital {
             }
         }
     }
+    
     public void administratorMenu()
     {
-        Admin admin = new Admin("admin", "admin");
         Screen screen = new Screen();
         Exceptions filter = new Exceptions();
         boolean correct_option = false;
-        String user, pass;
-        Scanner input = new Scanner(System.in);
         int option = 0;
         while (!correct_option)
         {
-            System.out.println("Digite o login:");
-            System.out.print("Usuário >> ");
-            user = input.nextLine();
-            System.out.print("Senha >> ");
-            pass = input.nextLine();
-            
-            if (user.equals(admin.getUser()) && pass.equals(admin.getPassword()))
-            {    
-                correct_option = true;
-            }
-            else System.out.println("Senha ou usuário inválidos!");
+           correct_option = admin.Login();
         }
         
         correct_option = false;
@@ -79,28 +72,28 @@ public class Hospital {
             switch (option)
             {
                 case 1 :
-                	adminManageEmployees(1, admin);
+                	adminManageEmployees(1);
                     break;
                 case 2 :
-                	adminManageEmployees(2, admin);
+                	adminManageEmployees(2);
                     break;
                 case 3 :
-                    adminPayEmployees(admin);
+                    adminPayEmployees();
                     break;
                 case 4 :
-                    adminSearchEmployee(admin);
+                    adminSearchEmployee();
                     break;
                 case 5 :
-                	adminAddProducts(admin);
+                	adminAddProducts();
                     break;
                 case 6:
-                	adminRemoveProducts(admin);
+                	adminRemoveProducts();
                 	break;
                 case 7:
                 	admin.showProducts();
                 	break;
                 case 8:
-                	adminAddBalance(admin);
+                	adminAddBalance();
                 	break;
                 case 0 :
                     System.out.println("Saindo ...");
@@ -110,7 +103,7 @@ public class Hospital {
         }
         
     }
-    public void adminManageEmployees(int op, Admin admin)
+    public void adminManageEmployees(int op)
 
     {
         if (op == 1)
@@ -167,7 +160,7 @@ public class Hospital {
                             crm = input.nextLine();
                             System.out.print("Digite a especialização >> ");
                             specialization = input.nextLine();
-                            admin.AddEmployee(age, name, gender, ssn, crm, specialization);
+                            admin.AddEmployee(age, name, gender, ssn, crm, specialization, doctors);
                             System.out.println("Usuário cadastrado com sucesso!");
                         }
                         else if (option == 2)
@@ -234,7 +227,7 @@ public class Hospital {
             else System.out.println("Não existe nenhum usuário cadastrado no momento!");
         }
     }
-    public void adminSearchEmployee(Admin admin)
+    public void adminSearchEmployee()
     {
     	Exceptions filter = new Exceptions();
     	Scanner input = new Scanner(System.in);
@@ -252,7 +245,7 @@ public class Hospital {
     	}
     	else System.out.println("Funcionário não encontrado!");
     }
-    public void adminPayEmployees(Admin admin)
+    public void adminPayEmployees()
     {
     	char choice;
     	Scanner input = new Scanner(System.in);
@@ -272,7 +265,7 @@ public class Hospital {
     	}
     	
     }
-    public void adminAddBalance(Admin admin)
+    public void adminAddBalance()
     {
     	Exceptions filter = new Exceptions();
     	double money = 0;
@@ -286,7 +279,7 @@ public class Hospital {
     	admin.addBalance(money);
     	System.out.println("Sucesso! Saldo atual: " + admin.getBalance());
     }
-    public void adminAddProducts(Admin admin)
+    public void adminAddProducts()
     {
     	Screen screen = new Screen();
     	Exceptions filter = new Exceptions();
@@ -319,7 +312,7 @@ public class Hospital {
     		}
     	}
     }
-    public void adminRemoveProducts(Admin admin)
+    public void adminRemoveProducts()
     {
     	boolean correct_option = false, correct_option2 = false, correct_option3 = false;
     	int option = 0, number = 0, product = 0, amount = 0;
@@ -390,46 +383,71 @@ public class Hospital {
     public void receptionMenu()
     {
         Screen screen = new Screen();
-        Reception reception = new Reception("recep", "recep");
         boolean correct_option = false;
         Exceptions filter = new Exceptions();
         int option;
+        while (!correct_option)
+        {
+        	correct_option = reception.Login();
+        }
+        correct_option = false;
         
         while (!correct_option)
         {
             screen.drawReceptionMenu();
-            option = filter.verify_menu(4);
-            if (option == -2 || option == -1) screen.drawReceptionMenu();
-            else
-            {	
-            	switch (option)
-            	{
-                	case 1 :
-                		//receptionAddPatients(1, reception);
-                		break;
-                	case 2 :
-                		//receptionAddPatients(2, reception);
-                		break;
-                	case 3 :
-                		System.out.println("Opção indisponível");
-                    	break;
-                	case 4 :
-                		//reception.showQueue();
-                		break;
-                	case 0:
-                		correct_option = true;
-                		break;
-            	}
+            option = filter.verify_menu(3);
+            switch (option)
+            {
+                case 1 :
+               		receptionPatientMenu();
+               		break;
+               	case 2 :
+               		receptionCheckLists();
+               		break;
+               	case 3 :
+               		receptionCallPatient();
+                   	break;
+               	case 0:
+               		correct_option = true;
+               		break;
             }
         }
     }
-    public void receptionAddPatients(int op, Reception reception)
+    public void receptionPatientMenu()
+    {
+    	Screen screen = new Screen();
+    	Scanner input = new Scanner(System.in);
+    	Exceptions filter = new Exceptions();
+    	int option = -1;
+    	
+    	boolean correct_option = false;
+    	while (!correct_option)
+    	{
+    		screen.drawReceptionConsultationMenu();
+    		option = filter.verify_menu(2);
+    		switch(option)
+    		{
+    			case 1:
+    				receptionAddPatients(1);
+    				break;
+    			case 2:
+    				if (doctors.size() > 0) receptionAddPatients(2);
+    				else System.out.println("Não há médicos fora da emergência no momento!");
+    				break;
+    			case 0:
+    				correct_option = true;
+    				break;
+    		}
+    	}
+    }
+    public void receptionAddPatients(int op)
     {
         Scanner input = new Scanner(System.in);
         boolean correct_option = false;
+        DoctorScreen screen = new DoctorScreen();
         String name, ssn = null, gender;
         Exceptions filter = new Exceptions();
-        int age = 0;
+        int age = 0, option = -1;
         System.out.println("Entre com as informações do paciente.");
         System.out.print("Digite o nome >> ");
         name = input.nextLine();
@@ -444,21 +462,244 @@ public class Hospital {
         }
         
         correct_option = false;
-                    
-        while (!correct_option)
-        {
-            System.out.print("Digite o CPF (apenas números) >> ");
-            ssn = input.nextLine();
-            correct_option = filter.verify_ssn(ssn);
-        }
-        
+               
         if (op == 1)
         {
-            //reception.Emergency(name, ssn, gender, age);
+        	while (!correct_option)
+            {
+                System.out.print("Digite o CPF (apenas números) >> ");
+                ssn = input.nextLine();
+                correct_option = filter.verify_ssn(ssn);
+                if (correct_option && nursery.existSsn(ssn))
+                {
+                	System.out.println("Este CPF já está na triagem!");
+                	correct_option = false;
+                }
+                
+            }
+        	System.out.println("\nO paciente será encaminhado para triagem!");
+        	nursery.addTriageList(new Patient(name, ssn, gender, age, 0, null));
         }
         else if (op == 2)
-        {
-            
+        {	
+        	correct_option = false;
+        	while (!correct_option)
+        	{
+        		screen.showDoctors(doctors);
+        		option = filter.verify_menu(doctors.size());
+        		if (option > 0)
+        		{
+        			System.out.println("\nO paciente foi adicionado na lista de espera do médico " + doctors.get(option-1).getDoctor().getName() + "\n");
+        			doctors.get(option-1).addPatient(new Patient(name, ssn, gender, age, 0, null));
+        			correct_option = true;
+        		}
+        		else if (option == 0)
+        		{
+        			System.out.println("Operação cancelada!");
+        			correct_option = true;
+        		}
+        	}
         }
+    }
+    public void receptionCheckLists()
+    {
+   
+    	Screen screen = new Screen();
+    	DoctorScreen docScreen = new DoctorScreen();
+    	boolean correct_option = false, correct_option2 = false;
+    	int option = -1;
+    	Exceptions filter = new Exceptions();
+    	while (!correct_option)
+    	{
+    		screen.drawReceptionConsultationMenu();
+    		option = filter.verify_menu(2);
+    		if (option == 1) reception.checkList();
+    		else if (option == 2)
+    		{
+    			if (doctors.size() > 0)
+    			{
+    				docScreen.showDoctors(doctors);
+    				while (!correct_option2)
+    				{
+    					option = filter.verify_menu(doctors.size());
+    					if (option > 0)
+    					{
+    						doctors.get(option-1).showList();
+    						correct_option2 = true;
+    					}
+    					else if (option == 0)
+    					{
+    						correct_option2 = true;
+    					}	
+    				}
+    			}
+    			else System.out.println("Não há médicos fora da emergência no momento!");
+    		}
+    		else if (option == 0) correct_option = true;
+    		correct_option2 = false;
+    	}
+    }
+    public void receptionCallPatient()
+    {
+    	boolean correct_option = false, correct_option2 = false;
+    	int option = -1, option2 = -1;
+    	Exceptions filter = new Exceptions();
+    	Screen screen = new Screen();
+    	DoctorScreen docScreen = new DoctorScreen();
+    	while (!correct_option)
+    	{
+    		screen.drawReceptionConsultationMenu();
+    		option = filter.verify_menu(2);
+    		if (option == 1)
+    		{
+    			if (reception.emergencyList.SizeOfQueue() > 0) reception.callPatient();
+    			else System.out.println("Não existe nenhum paciente na lista de espera!");
+    		}
+    		else if (option == 2)
+    		{
+    			if (doctors.size() > 0)
+    			{
+    				while (!correct_option2)
+    				{
+    					docScreen.showDoctors(doctors);
+    					option2 = filter.verify_menu(doctors.size());
+    					if (option > 0)
+    					{
+    						if (doctors.get(option2-1).getListSize() > 0)
+    						{
+    							if (!doctors.get(option2-1).getStatus())
+    							{
+    								doctors.get(option2-1).setPatient();
+    								System.out.println("Paciente " + doctors.get(option2-1).getPatient().getName() + " Comparecer a sala do médico " + doctors.get(option2-1).getDoctor().getName());
+    							}
+    							else System.out.println("O médico já está com um paciente em sala!");
+    							correct_option2 = true;
+    						}
+    						else 
+    						{
+    							System.out.println("Não existe nenhum paciente na lista de espera!");
+    							correct_option2 = true;
+    						}
+    					}
+    					else if (option == 0) correct_option2 = true;
+    				}
+    				correct_option2 = false;
+    			}
+    			else System.out.println("Não há médicos fora da emergência no momento!");
+    		}
+    		else if (option == 0) correct_option = true;
+    	}
+    }
+    
+    public void nurseryMenu()
+    {
+    	 Screen screen = new Screen();
+         Exceptions filter = new Exceptions();
+         boolean correct_option = false;
+         int option = -1;
+         while (!correct_option)
+         {
+        	 correct_option = nursery.Login();
+         }
+         correct_option = false;
+         while (!correct_option)
+         {
+        	 screen.drawNurseryMenu();
+        	 option = filter.verify_menu(1);
+        	 switch(option)
+        	 {
+        	 	case 1:
+        	 		nurseryTriage();
+        	 		break;
+        	 	case 0:
+        	 		correct_option = true;
+        	 		break;
+        	 }
+         }
+    }
+    public void nurseryTriage()
+    {
+    	boolean correct_option = false;
+    	String status = null, choice = null;
+    	Scanner input = new Scanner(System.in);
+    	Exceptions filter = new Exceptions();
+    	int priority = -1;
+    	while (!correct_option && nursery.existPatient())
+    	{
+    		Patient p = nursery.getPatient();
+    		System.out.println(p.toString());
+    		System.out.print("Digite como o paciente se sente >> ");
+    		status = input.nextLine();
+    		p.setStatus(status);
+    		while (priority < 0)
+    		{
+    			System.out.println("Digite a prioridade do paciente (0 / 10)");
+    			priority = filter.verify_menu(10);
+    		}
+    		p.setPriority(priority);
+    		priority = -1;
+    		System.out.println("O paciente será adicionado a lista de espera da emergência!");
+    		nursery.triageEvaluation(p, reception);
+    		if (nursery.existPatient())
+    		{
+    			System.out.print("Deseja atender outro paciente? S(sim)/N(não) >> ");
+    			choice = input.nextLine();
+    			if (choice.charAt(0) != 'S' && choice.charAt(0) != 's') correct_option = true;
+    		}
+    	}
+    	if (!nursery.existPatient()) System.out.println("\nNão há pacientes para a triagem no momento!");
+    }
+    
+    public void doctorsMenu()
+    {
+    	boolean correct_option = false;
+    	String ssn = null, crm = null;
+    	Scanner input = new Scanner(System.in);
+    	Exceptions filter = new Exceptions();
+    	DoctorScreen screen = new DoctorScreen();
+    	Doctor doctor = null;
+    	int option = -1;
+    	
+    	while (!correct_option)
+    	{
+    		System.out.print("Digite o CPF >> ");
+    		ssn = input.nextLine();
+    		System.out.print("Digite o CRM >> ");
+    		crm = input.nextLine();
+    		
+    		for (Doctor d : doctors)
+    		{
+    			if (d.Login(ssn, crm))
+    			{
+    				doctor = d;
+    				correct_option = true;
+    				break;
+    			}
+    		}
+    		if (!correct_option) System.out.println("CPF ou CRM inválidos!");
+    	}
+    	correct_option = false;
+    	while (!correct_option)
+    	{
+    		screen.drawDoctorMenu(doctor.getDoctor().getName());
+    		option = filter.verify_menu(3);
+    		switch(option)
+    		{
+    			case 1:
+    				doctorConsultation();
+    				break;
+    			case 2:
+    				doctor.showPatients();
+    			case 3:
+    				break;
+    			case 0:
+    				correct_option = true;
+    				break;
+    		}
+    	}
+    }
+    public void doctorConsultation()
+    {
+    	
     }
 }

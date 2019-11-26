@@ -29,5 +29,14 @@ public abstract class Person {
     public int getAge() {
         return age;
     }
+    @Override
+    public String toString()
+    {
+    	return "\nNome: " + this.getName() + "\n" +
+    		   "Idade: " + this.getAge() + "\n" + 
+    		   "Sexo: " + this.getGender() + "\n" +
+    		   "CPF: " + this.getSsn() + "\n";
+    			
+    }
     
 }

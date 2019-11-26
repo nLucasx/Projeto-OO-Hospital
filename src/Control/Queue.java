@@ -29,5 +29,6 @@ public abstract class Queue <E>{
 		}
 		return -1;
 	}
+	public abstract void showQueue();
 	public abstract void enqueue(E e);
 }

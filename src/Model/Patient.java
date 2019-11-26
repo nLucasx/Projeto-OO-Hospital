@@ -19,10 +19,12 @@ public class Patient extends Person{
     public String getStatus() {
         return status;
     }
-
+    public void setPriority(int priority)
+    {
+    	this.priority = priority;
+    }
     public void setStatus(String status) {
         this.status = status;
     }
-    
     
 }

@@ -1,6 +1,9 @@
 
 package Control;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import Model.Person;
 public class Exceptions {
     public int verify_menu(int range)
     {
@@ -37,6 +40,14 @@ public class Exceptions {
         }
         return true;
     }
+    public boolean exist_ssn(String ssn, ArrayList<Person> List)
+    {
+        for (Person person : List)
+        {
+            if (person.getSsn().equals(ssn)) return true;
+        }
+        return false;
+    }
     public int verify_integer()
     {
         int option = -1;
@@ -59,7 +70,7 @@ public class Exceptions {
     }
     public double verifyDouble()
     {
-    	double option = -1;
+    	double option = -1, max = 999999999.9;
     	try
     	{
     		Scanner input = new Scanner(System.in);
@@ -69,7 +80,7 @@ public class Exceptions {
     	{
     		System.out.println("Você digitou letras!");
     	}
-    	if (option < 0)
+    	if (option < 0 || option > max)
     	{
     		System.out.println("Opção inválida!");
     		return -1;
