@@ -50,5 +50,18 @@
    Esta camada será a que a enfermaria irá se conectar. Segue a funcionalidade disponível à enfermaria:
    * Triagem </br>
    Um paciente poderá escolher ser atendido pela emergência. Ele precisará fazer a triagem para ser verificada a prioridade de atendimento. Esta funcionalidade organizará a lista de espera da emergência. Caso existam prioridades iguais na lista de espera, o critério de desempate será a idade (quanto maior a idade, maior prioridade). Se existirem prioridades iguais e idades iguais, permanece na frente quem chegou primeiro na lista. </br></br>
-  
+ 
+ Login Admin:
+ user : admin
+ password : admin
+ 
+ 
+ Login Recepção:
+ user : recep
+ password : recep
+ 
+ 
+ Login Enfermaria:
+ user : nursery
+ password : nursery
  
