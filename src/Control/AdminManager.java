@@ -38,15 +38,26 @@ public class AdminManager {
                 correct_option = false;
                 if (option > 0)
                 {
-                    String name, ssn = null, gender;
+                    String name = null, ssn = null, gender = null;
                     int age = 0;
                     Scanner input = new Scanner(System.in);
                     System.out.println("Entre com as informações do funcionário.");
-                    System.out.print("Digite o nome >> ");
-                    name = input.nextLine();
-                    System.out.print("Digite o sexo >> ");
-                    gender = input.nextLine();
-
+                    while (!correct_option)
+                    {
+                    	System.out.print("Digite o nome >> ");
+                        name = input.nextLine();
+                        correct_option = filter.verifyString(name);
+                    }
+                    correct_option = false;
+                    
+                    while (!correct_option)
+                    {
+                    	System.out.print("Digite o sexo >> ");
+                    	gender = input.nextLine();
+                    	correct_option = filter.verifyString(gender);
+                    }
+                    correct_option = false;
+                    
                     while (!correct_option)
                     {  
                         System.out.print("Digite a idade >> ");
@@ -61,7 +72,7 @@ public class AdminManager {
                         ssn = input.nextLine();
                         correct_option = filter.verify_ssn(ssn);
                     }
-
+                    correct_option = false;
                     if (!admin.exist_ssn(ssn))
                     {
                         if (option == 1)
@@ -84,12 +95,12 @@ public class AdminManager {
                         }
                         else if (option == 3)
                         {
-                            admin.AddEmployee(age, name, gender, ssn);
+                            admin.AddEmployee(age, name, gender, ssn, 1);
                             System.out.println("Usuário cadastrado com sucesso!");
                         }
                         else 
                         {
-                            admin.AddEmployee(age, name, gender, ssn, 1);
+                        	admin.AddEmployee(age, name, gender, ssn, 2);
                             System.out.println("Usuário cadastrado com sucesso!");
                         }
                     }

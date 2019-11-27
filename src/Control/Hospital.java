@@ -29,7 +29,7 @@ public class Hospital {
         int option = -1;
         while (!correct_option)
         {
-        	screen.drawMainMenu();
+        	screen.drawMainMenu(name);
         	option = filter.verify_menu(4);
             switch (option)
             {

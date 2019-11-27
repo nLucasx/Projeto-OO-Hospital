@@ -48,15 +48,26 @@ public class ReceptionManager {
         Scanner input = new Scanner(System.in);
         boolean correct_option = false;
         DoctorScreen screen = new DoctorScreen();
-        String name, ssn = null, gender;
+        String name = null, ssn = null, gender = null;
         Exceptions filter = new Exceptions();
         int age = 0, option = -1;
         System.out.println("Entre com as informações do paciente.");
-        System.out.print("Digite o nome >> ");
-        name = input.nextLine();
-        System.out.print("Digite o sexo >> ");
-        gender = input.nextLine();
         
+        while (!correct_option)
+        {
+        	System.out.print("Digite o nome >> ");
+            name = input.nextLine();
+            correct_option = filter.verifyString(name);
+        }
+        correct_option = false;
+        
+        while (!correct_option)
+        {
+        	System.out.print("Digite o sexo >> ");
+        	gender = input.nextLine();
+        	correct_option = filter.verifyString(gender);
+        }
+        correct_option = false;
         while (!correct_option)
         {  
             System.out.print("Digite a idade >> ");

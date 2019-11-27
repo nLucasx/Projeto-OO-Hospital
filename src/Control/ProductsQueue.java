@@ -10,17 +10,14 @@ public class ProductsQueue extends Queue<Products>{
 	public void enqueue(Products e) 
 	{
 		int i = super.getIndex(e.toString());
-		if (i == -1)
-		{
-			super.queue.add(e);
-			Collections.sort(super.queue);
-		}
-		else
-		{
-			super.getItem(i).sumAmount(e.getAmount());
-		}
+		if (i == -1) super.queue.add(e);
+		else super.getItem(i).sumAmount(e.getAmount());
+		this.organize();
 	}
-
+	public void organize()
+	{
+		Collections.sort(super.queue);
+	}
 	public void showQueue(int i) {
 		for (Products e : super.queue)
     	{

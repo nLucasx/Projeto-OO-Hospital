@@ -14,7 +14,7 @@ public class Admin extends Account {
     public Admin(String user, String password)
     {
         super(user, password);
-        this.allemployees = new ArrayList();
+        this.allemployees = new ArrayList<Employee>();
         this.balance = 120000;
         this.HproductList = new ProductsQueue();
         this.CproductList = new ProductsQueue();
@@ -41,15 +41,18 @@ public class Admin extends Account {
         Employee nurse = new Nurse(name, ssn, gender, age, specialization);
         this.allemployees.add(nurse);
     }
-    public void AddEmployee(int age, String name, String gender, String ssn)
+    public void AddEmployee(int age, String name, String gender, String ssn, int op)
     {
-        Employee recepcionist = new Recepcionist(name, ssn, gender, age);
-        this.allemployees.add(recepcionist);
-    }
-    public void AddEmployee(int age, String name, String gender, String ssn, int teste)
-    {
-        Employee gen_service = new GeneralServices(name, ssn, gender, age, teste);
-        this.allemployees.add(gen_service);
+        if (op == 1)
+        {
+        	Employee recepcionist = new Recepcionist(name, ssn, gender, age);
+        	this.allemployees.add(recepcionist);
+        }
+        else
+        {
+        	Employee gen_service = new GeneralServices(name, ssn, gender, age);
+            this.allemployees.add(gen_service);
+        }
     }
     
     public double getBalance() {
@@ -85,10 +88,12 @@ public class Admin extends Account {
     	if (option == 1)
     	{
     		this.HproductList.getItem(index).subAmount(number);
+    		this.HproductList.organize();
     	}
     	else if (option == 2)
     	{
     		this.CproductList.getItem(index).subAmount(number);
+    		this.CproductList.organize();
     	}
     }
     public void PayEmployees()

@@ -7,7 +7,8 @@ public class NurseryScreen {
 	}
 	public void drawNurseryMenu()
     {
-    	System.out.println("\n[1] - Triagem");
+		System.out.println("\nMenu da enfermaria");
+		System.out.println("\n[1] - Triagem");
         System.out.println("[0] - Sair");
     }
 }

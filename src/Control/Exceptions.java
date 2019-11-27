@@ -68,6 +68,18 @@ public class Exceptions {
         }
         return option;
     }
+    public boolean verifyString(String str)
+    {
+    	for (int i = 0; i < str.length(); i++)
+    	{
+    		if (str.charAt(i) >= '0' && str.charAt(i) <= '9')
+    		{
+    			System.out.println("Digite apenas letras!");
+    			return false;
+    		}
+    	}
+    	return true;
+    }
     public double verifyDouble()
     {
     	double option = -1, max = 999999999.9;

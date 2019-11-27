@@ -6,6 +6,7 @@ public class AdminScreen {
 	}
 	public void drawAdminMenu()
     {
+		System.out.println("\n Menu do administrador");
 		System.out.println("\n[1] - Cadastrar funcionários");
         System.out.println("[2] - Excluir funcionário do sistema");
         System.out.println("[3] - Pagar funcionários");
