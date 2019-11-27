@@ -53,15 +53,15 @@
  
  Login Admin:
  user : admin
- password : admin
+ password : admin </br>
  
  
  Login Recepção:
  user : recep
- password : recep
+ password : recep </br>
  
  
  Login Enfermaria:
  user : nursery
- password : nursery
+ password : nursery </br>
  
