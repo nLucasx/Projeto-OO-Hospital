@@ -6,17 +6,13 @@ import Control.Doctor;
 
 public class DoctorScreen {
 	public DoctorScreen() {
-		// TODO Auto-generated constructor stub
 	}
-	public void drawDoctorMenu(String name)
+	public void drawDoctorMenu()
     {
-    	clear();
-    	System.out.println("Bem vindo Dr(a)." + name);
     	System.out.println("\n[1] - Atender próximo paciente");
         System.out.println("[2] - Listar pacientes já atendidos");
         System.out.println("[3] - Buscar relatório médico");
         System.out.println("[0] - Sair");
-        clear();
     }
 	public void printPatients(ArrayList<Patient> patients)
 	{
@@ -26,6 +22,7 @@ public class DoctorScreen {
 		}
 		else
 		{
+			System.out.println("Lista de pacientes");
 			for (Patient p : patients)
 			{
 				System.out.println(p.toString());
@@ -48,11 +45,4 @@ public class DoctorScreen {
 			System.out.println("[0] - Sair");
 		}
 	}
-	public void clear()
-    {
-    	for(int clear = 0; clear < 4; clear++)
-    	{
-    	     System.out.println("\n") ;
-    	}
-    }
 }

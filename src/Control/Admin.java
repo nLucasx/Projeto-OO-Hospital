@@ -7,8 +7,8 @@ import java.util.PriorityQueue;
 
 public class Admin extends Account {
     private ArrayList <Employee> allemployees;
-    private Queue <Products> HproductList;
-    private Queue <Products> CproductList;
+    private ProductsQueue HproductList;
+    private ProductsQueue CproductList;
     private double balance;
     
     public Admin(String user, String password)
@@ -105,7 +105,8 @@ public class Admin extends Account {
     }
     public void addBalance(double money)
     {
-    	this.balance += money;
+    	if (this.getBalance() < 9999999) this.balance += money;
+    	else System.out.println("Não é possível adicionar mais saldo!");
     }
     public void addProduct(int option, String name, int number)
     {
@@ -123,43 +124,20 @@ public class Admin extends Account {
     	if (option == 1)
     	{
     		System.out.println("\nMateriais Hospitalares:");
-        	for (int i = 0; i < this.HproductList.SizeOfQueue(); i++)
-        	{
-        		Products e = this.HproductList.getItem(i);
-        		if (e.getAmount() > 0) System.out.println("["+(i+1)+"] - " +e + " : " + e.getAmount() + " unidades.");
-        		else System.out.println("["+(i+1)+"] - " + e + ": EM FALTA!");
-        	}
+        	this.HproductList.showQueue(0);
     	}
     	else if (option == 2)
     	{
     		System.out.println("\nMateriais de Limpeza:");
-        	for (int i = 0; i < this.CproductList.SizeOfQueue(); i++)
-        	{
-        		Products e = this.CproductList.getItem(i);
-        		if (e.getAmount() > 0) System.out.println("["+(i+1)+"] - "+ e + " : " + e.getAmount() + " unidades.");
-        		else System.out.println("["+(i+1)+"] - " + e + ": EM FALTA!");
-        	}
-    	}
-    	System.out.println("[0] - Sair");
- 
+        	this.CproductList.showQueue(0);
+    	} 
     }
     public void showProducts()
     {
     	System.out.println("\nMateriais Hospitalares:");
-    	for (int i = 0; i < this.HproductList.SizeOfQueue(); i++)
-    	{
-    		Products e = this.HproductList.getItem(i);
-    		if (e.getAmount() > 0) System.out.println(e + " : " + e.getAmount() + " unidades.");
-    		else System.out.println(e + ": EM FALTA!");
-    	}
-    	
+    	this.HproductList.showQueue();
     	System.out.println("\nMateriais de Limpeza:");
-    	for (int i = 0; i < this.CproductList.SizeOfQueue(); i++)
-    	{
-    		Products e = this.CproductList.getItem(i);
-    		if (e.getAmount() > 0) System.out.println(e + " : " + e.getAmount() + " unidades.");
-    		else System.out.println(e + ": EM FALTA!");
-    	}
+    	this.CproductList.showQueue();
     }
     public int return_index_of_person(String ssn)
     {

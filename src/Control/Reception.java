@@ -19,11 +19,16 @@ public class Reception extends Account{
     public void callPatient()
     {
     	Patient p = this.emergencyList.dequeue();
-    	System.out.println("Paciente " + p.getName() + "compareça a sala de emergência!");
+    	System.out.println("Paciente " + p.getName() + " compareça a sala de emergência!");
     }
     public void callPatient(Doctor doctor) //overload
     {
-        
+    	if (!doctor.getStatus())
+		{
+			doctor.setPatient();
+			System.out.println("Paciente " + doctor.getPatient().getName() + " comparecer a sala do médico " + doctor.getDoctor().getName() + ".");
+		}
+		else System.out.println("O médico já está com um paciente em sala!");
     }
     public void checkList()
     {

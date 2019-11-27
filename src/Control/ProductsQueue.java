@@ -21,10 +21,22 @@ public class ProductsQueue extends Queue<Products>{
 		}
 	}
 
-	@Override
-	public void showQueue() {
-		// TODO Auto-generated method stub
-		
+	public void showQueue(int i) {
+		for (Products e : super.queue)
+    	{
+    		if (e.getAmount() > 0) System.out.println("["+(i+1)+"] - " +e + " : " + e.getAmount() + " unidades.");
+    		else System.out.println("["+(i+1)+"] - " + e + ": EM FALTA!");
+    		i++;
+    	}
+		System.out.println("[0] - Sair");
+	}
+	public void showQueue()
+	{
+		for (Products e : super.queue)
+    	{
+    		if (e.getAmount() > 0) System.out.println(e + " : " + e.getAmount() + " unidades.");
+    		else System.out.println(e + ": EM FALTA!");
+    	}
 	}
 
 }
