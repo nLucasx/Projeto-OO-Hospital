@@ -12,6 +12,7 @@ public class Hospital {
 	private Reception reception;
 	private Nursery nursery;
 	private ArrayList<Doctor> doctors;
+	
     public Hospital(String name) 
     {
     	this.name = name;
@@ -57,84 +58,80 @@ public class Hospital {
         AdminScreen screen = new AdminScreen();
         Exceptions filter = new Exceptions();
         AdminManager adminManager = new AdminManager(admin, doctors);
-        boolean correct_option = false;
+        boolean correct_option = false, logged = false;
         int option = 0;
-        while (!correct_option)
+        logged = admin.Login();
+        if (logged)
         {
-           correct_option = admin.Login();
-        }
-        
-        correct_option = false;
-        while (!correct_option)
-        {
-            screen.drawAdminMenu();
-            option = filter.verify_menu(8);
-            switch (option)
-            {
-                case 1 :
-                	adminManager.adminManageEmployees(1);
-                    break;
-                case 2 :
-                	adminManager.adminManageEmployees(2);
-                    break;
-                case 3 :
-                	adminManager.adminPayEmployees();
-                    break;
-                case 4 :
-                	adminManager.adminSearchEmployee();
-                    break;
-                case 5 :
-                	adminManager.adminAddProducts();
-                    break;
-                case 6:
-                	adminManager.adminRemoveProducts();
-                	break;
-                case 7:
-                	admin.showProducts();
-                	break;
-                case 8:
-                	adminManager.adminAddBalance();
-                	break;
-                case 0 :
-                    System.out.println("Saindo ...");
-                    correct_option = true;
-                    break;
-            }
+        	while (!correct_option)
+        	{
+        		screen.drawAdminMenu();
+        		option = filter.verify_menu(8);
+        		switch (option)
+        		{
+        			case 1 :
+        				adminManager.adminManageEmployees(1);
+        				break;
+        			case 2 :
+        				adminManager.adminManageEmployees(2);
+        				break;
+        			case 3 :
+        				adminManager.adminPayEmployees();
+        				break;
+        			case 4 :
+        				adminManager.adminSearchEmployee();
+        				break;
+        			case 5 :
+        				adminManager.adminAddProducts();
+        				break;
+        			case 6:
+        				adminManager.adminRemoveProducts();
+        				break;
+        			case 7:
+        				admin.showProducts();
+        				break;
+        			case 8:
+        				adminManager.adminAddBalance();
+        				break;
+        			case 0 :
+        				System.out.println("Saindo ...");
+        				correct_option = true;
+        				break;
+        		}
+        	}
         }
         
     }
     public void receptionMenu()
     {
         ReceptionScreen screen = new ReceptionScreen();
-        boolean correct_option = false;
+        boolean correct_option = false, logged = false;
         Exceptions filter = new Exceptions();
         ReceptionManager receptionManager = new ReceptionManager(reception, doctors, nursery);
         int option;
-        while (!correct_option)
+        logged = reception.Login();
+        if (logged)
         {
-        	correct_option = reception.Login();
-        }
-        correct_option = false;
-        
-        while (!correct_option)
-        {
-            screen.drawReceptionMenu();
-            option = filter.verify_menu(3);
-            switch (option)
-            {
-                case 1 :
-               		receptionManager.receptionPatientMenu();
-               		break;
-               	case 2 :
-               		receptionManager.receptionCheckLists();
-               		break;
-               	case 3 :
-               		receptionManager.receptionCallPatient();
-                   	break;
-               	case 0:
-               		correct_option = true;
-               		break;
-            }
+        	while (!correct_option)
+        	{
+        		screen.drawReceptionMenu();
+        		option = filter.verify_menu(3);
+        		switch (option)
+        		{
+        			case 1 :
+        				receptionManager.receptionPatientMenu();
+        				break;
+        			case 2 :
+        				receptionManager.receptionCheckLists();
+        				break;
+        			case 3 :
+        				receptionManager.receptionCallPatient();
+        				break;
+        			case 0:
+        				correct_option = true;
+        				break;
+        		}
+        	}
         }
     }
     public void nurseryMenu()
@@ -142,25 +139,24 @@ public class Hospital {
     	 NurseryScreen screen = new NurseryScreen();
          Exceptions filter = new Exceptions();
          NurseryManager nurseryManager = new NurseryManager(nursery, reception);
-         boolean correct_option = false;
+         boolean correct_option = false, logged = false;
          int option = -1;
-         while (!correct_option)
+         logged = nursery.Login();
+         if (logged)
          {
-        	 correct_option = nursery.Login();
-         }
-         correct_option = false;
-         while (!correct_option)
-         {
-        	 screen.drawNurseryMenu();
-        	 option = filter.verify_menu(1);
-        	 switch(option)
+        	 while (!correct_option)
         	 {
-        	 	case 1:
-        	 		nurseryManager.nurseryTriage();
-        	 		break;
-        	 	case 0:
-        	 		correct_option = true;
-        	 		break;
+        		 screen.drawNurseryMenu();
+        		 option = filter.verify_menu(1);
+        		 switch(option)
+        		 {	
+        	 		case 1:
+        	 			nurseryManager.nurseryTriage();
+        	 			break;
+        	 		case 0:
+        	 			correct_option = true;
+        	 			break;
+        		 }
         	 }
          }
     }
@@ -173,46 +169,56 @@ public class Hospital {
     	DoctorScreen screen = new DoctorScreen();
     	Doctor doctor = null;
     	int option = -1;
-    	
-    	while (!correct_option)
+    	if (doctors.size() > 0)
     	{
-    		System.out.print("Digite o CPF >> ");
-    		ssn = input.nextLine();
-    		System.out.print("Digite o CRM >> ");
-    		crm = input.nextLine();
-    		
-    		for (Doctor d : doctors)
+    		while (!correct_option)
     		{
-    			if (d.Login(ssn, crm))
+    			System.out.print("Digite o CPF >> ");
+    			ssn = input.nextLine();
+    			System.out.print("Digite o CRM >> ");
+    			crm = input.nextLine();
+    			
+    			for (Doctor d : doctors)
     			{
-    				doctor = d;
+    				if (d.Login(ssn, crm))
+    				{
+    					doctor = d;
+    					correct_option = true;
+    					break;
+    				}
+    			}
+    			if (!correct_option) 
+    			{
+    				System.out.println("CPF ou CRM inválidos!");
     				correct_option = true;
-    				break;
     			}
     		}
-    		if (!correct_option) System.out.println("CPF ou CRM inválidos!");
-    	}
-    	correct_option = false;
-    	System.out.println("\nBem vindo Dr(a)." + doctor.getDoctor().getName());
-    	while (!correct_option)
-    	{
-    		screen.drawDoctorMenu();
-    		option = filter.verify_menu(3);
-    		switch(option)
+    		if (doctor != null)
     		{
-    			case 1:
-    				doctor.consultation();;
-    				break;
-    			case 2:
-    				doctor.showPatients();
-    				break;
-    			case 3:
-    				doctor.searchReport();
-    				break;
-    			case 0:
-    				correct_option = true;
-    				break;
+    			correct_option = false;
+    			System.out.println("\nBem vindo Dr(a)." + doctor.getDoctor().getName());
+    			while (!correct_option)
+    			{
+    				screen.drawDoctorMenu();
+    				option = filter.verify_menu(3);
+    				switch(option)
+    				{
+    					case 1:
+    						doctor.consultation();;
+    						break;
+    					case 2:
+    						doctor.showPatients();
+    						break;
+    					case 3:
+    						doctor.searchReport();
+    						break;
+    					case 0:
+    						correct_option = true;
+    						break;
+    				}
+    			}
     		}
     	}
+    	else System.out.println("Não existem médicos cadastrados no momento!");
     }
 }
