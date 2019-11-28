@@ -100,7 +100,7 @@ public class Admin extends Account {
     {
     	if (getBalance() > getAllSalary()) this.balance -= getAllSalary();
     }
-    public boolean exist_ssn(String ssn)
+    public boolean existSsn(String ssn)
     {
         for (Person person : this.allemployees)
         {
@@ -169,11 +169,11 @@ public class Admin extends Account {
             System.out.println("Idade: " + allemployees.get(i).getAge() + "\n");
         }
     }
-    public void delete_employee(int i)
+    public void deleteEmployee(int i)
     {
     	this.allemployees.remove(i);
     }
-    public void delete_employee(int i, ArrayList<Doctor> accounts)
+    public void deleteEmployee(int i, ArrayList<Doctor> accounts)
     {
     	this.allemployees.remove(i);
     	//accounts.removeAccount(doctor);

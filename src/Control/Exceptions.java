@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import Model.Person;
 public class Exceptions {
-    public int verify_menu(int range)
+    public int verifyMenu(int range)
     {
         int option;
         Scanner input = new Scanner(System.in);
@@ -23,7 +23,7 @@ public class Exceptions {
         System.out.println("Opção inválida");
         return -1; // -1 para opção inválida.
     }
-    public boolean verify_ssn(String ssn)
+    public boolean verifySsn(String ssn)
     {
         if (ssn.length() < 11 || ssn.length() > 11)
         {
@@ -40,15 +40,7 @@ public class Exceptions {
         }
         return true;
     }
-    public boolean exist_ssn(String ssn, ArrayList<Person> List)
-    {
-        for (Person person : List)
-        {
-            if (person.getSsn().equals(ssn)) return true;
-        }
-        return false;
-    }
-    public int verify_integer()
+    public int verifyInteger()
     {
         int option = -1;
         try

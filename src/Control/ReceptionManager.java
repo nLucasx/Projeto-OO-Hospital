@@ -27,7 +27,7 @@ public class ReceptionManager {
     	while (!correct_option)
     	{
     		screen.drawReceptionConsultationMenu();
-    		option = filter.verify_menu(2);
+    		option = filter.verifyMenu(2);
     		switch(option)
     		{
     			case 1:
@@ -71,7 +71,7 @@ public class ReceptionManager {
         while (!correct_option)
         {  
             System.out.print("Digite a idade >> ");
-            age = filter.verify_integer();
+            age = filter.verifyInteger();
             if (age != -1) correct_option = true;
         }
         
@@ -83,7 +83,7 @@ public class ReceptionManager {
             {
                 System.out.print("Digite o CPF (apenas números) >> ");
                 ssn = input.nextLine();
-                correct_option = filter.verify_ssn(ssn);
+                correct_option = filter.verifySsn(ssn);
                 if (correct_option && nursery.existSsn(ssn))
                 {
                 	System.out.println("Este CPF já está na triagem!");
@@ -104,12 +104,12 @@ public class ReceptionManager {
                 {
                     System.out.print("Digite o CPF (apenas números) >> ");
                     ssn = input.nextLine();
-                    correct_option2 = filter.verify_ssn(ssn);    
+                    correct_option2 = filter.verifySsn(ssn);    
                 }
         		correct_option2 = false;
         		
         		screen.showDoctors(doctors);
-        		option = filter.verify_menu(doctors.size());
+        		option = filter.verifyMenu(doctors.size());
         			
         		if (!doctors.get(option-1).existSsn(ssn))
         		{
@@ -139,7 +139,7 @@ public class ReceptionManager {
     	while (!correct_option)
     	{
     		screen.drawReceptionConsultationMenu();
-    		option = filter.verify_menu(2);
+    		option = filter.verifyMenu(2);
     		if (option == 1) reception.checkList();
     		else if (option == 2)
     		{
@@ -148,7 +148,7 @@ public class ReceptionManager {
     				docScreen.showDoctors(doctors);
     				while (!correct_option2)
     				{
-    					option = filter.verify_menu(doctors.size());
+    					option = filter.verifyMenu(doctors.size());
     					if (option > 0)
     					{
     						doctors.get(option-1).showList();
@@ -176,7 +176,7 @@ public class ReceptionManager {
     	while (!correct_option)
     	{
     		screen.drawReceptionConsultationMenu();
-    		option = filter.verify_menu(2);
+    		option = filter.verifyMenu(2);
     		if (option == 1)
     		{
     			if (reception.emergencyList.SizeOfQueue() > 0) reception.callPatient();
@@ -189,7 +189,7 @@ public class ReceptionManager {
     				while (!correct_option2)
     				{
     					docScreen.showDoctors(doctors);
-    					option2 = filter.verify_menu(doctors.size());
+    					option2 = filter.verifyMenu(doctors.size());
     					if (option > 0)
     					{
     						if (doctors.get(option2-1).getListSize() > 0)

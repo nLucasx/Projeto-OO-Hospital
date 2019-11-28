@@ -31,7 +31,7 @@ public class Hospital {
         while (!correct_option)
         {
         	screen.drawMainMenu(name);
-        	option = filter.verify_menu(4);
+        	option = filter.verifyMenu(4);
             switch (option)
             {
                 case 1 :
@@ -66,7 +66,7 @@ public class Hospital {
         	while (!correct_option)
         	{
         		screen.drawAdminMenu();
-        		option = filter.verify_menu(8);
+        		option = filter.verifyMenu(8);
         		switch (option)
         		{
         			case 1 :
@@ -115,7 +115,7 @@ public class Hospital {
         	while (!correct_option)
         	{
         		screen.drawReceptionMenu();
-        		option = filter.verify_menu(3);
+        		option = filter.verifyMenu(3);
         		switch (option)
         		{
         			case 1 :
@@ -147,7 +147,7 @@ public class Hospital {
         	 while (!correct_option)
         	 {
         		 screen.drawNurseryMenu();
-        		 option = filter.verify_menu(1);
+        		 option = filter.verifyMenu(1);
         		 switch(option)
         		 {	
         	 		case 1:
@@ -200,7 +200,7 @@ public class Hospital {
     			while (!correct_option)
     			{
     				screen.drawDoctorMenu();
-    				option = filter.verify_menu(3);
+    				option = filter.verifyMenu(3);
     				switch(option)
     				{
     					case 1:

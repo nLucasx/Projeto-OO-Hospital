@@ -28,7 +28,7 @@ public class NurseryManager {
     		while (priority < 0)
     		{
     			System.out.println("Digite a prioridade do paciente (0 / 10)");
-    			priority = filter.verify_menu(10);
+    			priority = filter.verifyMenu(10);
     		}
     		p.setPriority(priority);
     		priority = -1;

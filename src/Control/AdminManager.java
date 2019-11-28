@@ -31,7 +31,7 @@ public class AdminManager {
                 while (!correct_option)
                 {
                 	screen.drawAdminEmployee();
-                	option = filter.verify_menu(4);
+                	option = filter.verifyMenu(4);
                     if (option >= 0) correct_option = true;
    
                 }
@@ -61,7 +61,7 @@ public class AdminManager {
                     while (!correct_option)
                     {  
                         System.out.print("Digite a idade >> ");
-                        age = filter.verify_integer();
+                        age = filter.verifyInteger();
                         if (age != -1) correct_option = true;
                     }
                     correct_option = false;
@@ -70,10 +70,10 @@ public class AdminManager {
                     {
                         System.out.print("Digite o CPF (apenas números) >> ");
                         ssn = input.nextLine();
-                        correct_option = filter.verify_ssn(ssn);
+                        correct_option = filter.verifySsn(ssn);
                     }
                     correct_option = false;
-                    if (!admin.exist_ssn(ssn))
+                    if (!admin.existSsn(ssn))
                     {
                         if (option == 1)
                         {
@@ -126,7 +126,7 @@ public class AdminManager {
                 {
                     System.out.print("Digite o CPF (apenas números) >> ");
                     ssn = input.nextLine();
-                    correct_option = filter.verify_ssn(ssn);
+                    correct_option = filter.verifySsn(ssn);
                     if (correct_option)
                     {
                         index = admin.return_index_of_person(ssn);
@@ -141,7 +141,7 @@ public class AdminManager {
                 choice = input.next().charAt(0);
                 if (choice == 'S' || choice == 's')
                 {
-                    admin.delete_employee(index);
+                    admin.deleteEmployee(index);
                     System.out.println("O funcionário foi excluído!");
                 }
                 else System.out.println("Saindo...");
@@ -159,9 +159,9 @@ public class AdminManager {
     	{
     		System.out.print("Digite o CPF (apenas números) >> ");
             ssn = input.nextLine();
-            correct_option = filter.verify_ssn(ssn);
+            correct_option = filter.verifySsn(ssn);
     	}
-    	if (admin.exist_ssn(ssn))
+    	if (admin.existSsn(ssn))
     	{
     		admin.showEmployee(admin.return_index_of_person(ssn));
     	}
@@ -213,7 +213,7 @@ public class AdminManager {
     	while (!correct_option)
     	{
     		screen.drawAdminProductsMenu();
-    		option = filter.verify_menu(2);
+    		option = filter.verifyMenu(2);
     		if (option > 0)
     		{
     			System.out.print("Digite o nome do produto >> ");
@@ -221,7 +221,7 @@ public class AdminManager {
     			while(!correct_option2)
     			{	
     				System.out.print("Digite a quantidade >> ");
-    				number = filter.verify_integer();
+    				number = filter.verifyInteger();
                     if (number != -1) correct_option2 = true;
     			}
     			admin.addProduct(option, name, number);
@@ -240,7 +240,7 @@ public class AdminManager {
     	while (!correct_option)
     	{
     		screen.drawAdminProductsMenu();
-    		option = filter.verify_menu(2);
+    		option = filter.verifyMenu(2);
     		if (option > 0)
     		{
     			while(!correct_option2)
@@ -248,12 +248,12 @@ public class AdminManager {
     				admin.showProducts(option);
     				if (option == 1) 
     				{
-    					product = filter.verify_menu(admin.getSizeOfQueueH());
+    					product = filter.verifyMenu(admin.getSizeOfQueueH());
     					if (product > 0) amount = admin.getHProduct(product-1).getAmount();
     				}
    					else if (option == 2) 
    					{
-   						product = filter.verify_menu(admin.getSizeOfQueueC());
+   						product = filter.verifyMenu(admin.getSizeOfQueueC());
    						if (product > 0) amount = admin.getCProduct(product-1).getAmount();
    					}
    					
@@ -262,7 +262,7 @@ public class AdminManager {
     					while(!correct_option3)
     					{
     						System.out.print("Digite a quantidade a ser removida do registro >> ");
-    						number = filter.verify_integer();
+    						number = filter.verifyInteger();
     						if (number > 0)
     						{
     							if (option == 1)
