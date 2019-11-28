@@ -16,7 +16,7 @@
    * Busca de funcionário no banco de dados da clínica </br>
    Através do CPF, o gerente poderá verificar todas as informações disponíveis sobre um funcionário. Caso o CPF não estiver cadastrado, o sistema irá informá-lo. </br></br>
    * Registro de compra de materiais </br>
-   Esta funcionalidade tem o objetivo de gerenciar a quantidade de materiais disponíveis na clínica, sejam eles materiais hospitalares, limpeza e etc. Os materiais serão listados em categorias de uso e em ordem crescente de unidades. O sistema já disponibilizará uma lista padrão de materiais necessários na clínica. O administrador poderá adicionar um novo material específico na lista </br></br>
+   Esta funcionalidade tem o objetivo de gerenciar a quantidade de materiais disponíveis na clínica, sejam eles materiais hospitalares e limpeza. Os materiais serão listados em categorias de uso e em ordem crescente de unidades. O sistema já disponibilizará uma lista padrão de materiais necessários na clínica. O administrador poderá adicionar um novo material específico na lista </br></br>
    * Registro de uso de materiais </br>
    Esta funcionalidade terá o objetivo registrar o uso de unidades disponíveis de materiais. Quando o número de unidades de um certo material chegar a zero, o gerente já saberá da necessidade de comprar mais unidades daquele material.</br></br>
    * Listagem de materiais disponíveis </br>
